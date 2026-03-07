@@ -1,7 +1,5 @@
 # Guts - A bevy editor from within Emacs.
 
-![Logo](guts_logo.png)
-
 ## Features
 
 - Entity and Resource inspector [x].
