@@ -20,6 +20,7 @@
 ;;; Code:
 
 (require 'tabulated-list)
+(require 'transient)
 (require 'guts-entities)
 (require 'guts-resources)
 (require 'guts-relations)
