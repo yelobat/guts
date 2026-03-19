@@ -230,10 +230,9 @@ If ADVANCE is non-nil, advance to the next line."
 (defun guts-ecs--component-execute ()
   "Execute the markings for the marked components."
   (interactive)
-  (dolist (component guts-ecs--marked-delete-list)
-    (brpel-world-remove-components-synchronously
-     guts-entities--current-entity
-     (vconcat guts-ecs--marked-delete-list)))
+  (brpel-world-remove-components-synchronously
+   guts-entities--current-entity
+   (vconcat guts-ecs--marked-delete-list))
   (guts-ecs--marked-refresh)
   (guts-ecs--component-view))
 
@@ -299,7 +298,7 @@ If ADVANCE is non-nil, advance to the next line."
 (defun guts-ecs--resource-select ()
   "Select the current resource for editing."
   (interactive)
-  (let* ((name (aref (tabulated-list-get-entry) 1))
+  (let* ((name (guts-resources--set-current-resource (aref (tabulated-list-get-entry) 1)))
          (buffer (find-file-noselect guts-common--editor-file))
          (result (alist-get 'result (brpel-world-get-resources-synchronously
                   guts-resources--current-resource)))
