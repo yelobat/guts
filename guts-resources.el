@@ -38,18 +38,5 @@
 The returned format is (list RESOURCE-NAME)."
   (alist-get 'result (brpel-world-list-resources-synchronously)))
 
-(defun guts-resources--resource-view ()
-  "The resource view of the currently selected resource."
-  (let* ((buffer (find-file-noselect guts-common--editor-file))
-         (result (brpel-world-get-resources-synchronously guts-resources--current-resource))
-         (component (alist-get 'value (alist-get 'result result))))
-    (with-current-buffer buffer
-      (erase-buffer)
-      (guts-edit-mode)
-      (save-excursion
-        (insert (json-encode component)))
-      (json-pretty-print (point) (point-max))
-      (switch-to-buffer-other-window (current-buffer)))))
-
 (provide 'guts-resources)
 ;;; guts-resources.el ends here

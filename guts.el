@@ -46,9 +46,9 @@
     (guts--update-connection))
   (condition-case err
       (progn
-        (brpel-rpc-discover-synchronously)
+        (brpel--registry-schema-index-populate)
         (guts-ecs--entity-view))
-    (error (message err))))
+    (error (message "%s" (error-message-string err)))))
 
 (provide 'guts)
 ;;; guts.el ends here

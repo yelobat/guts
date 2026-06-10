@@ -39,7 +39,8 @@
 
 (defun guts-relations--remove-child (child)
   "Remove the currently marked CHILD."
-  (delete child guts-relations--marked-children))
+  (setq guts-relations--marked-children
+        (delete child guts-relations--marked-children)))
 
 (defun guts-relations--parent-p (entity)
   "Predicate as to whether ENTITY is the marked parent."

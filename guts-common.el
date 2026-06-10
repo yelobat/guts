@@ -23,11 +23,12 @@
   "Guts - A bevy editor inside Emacs."
   :group 'tools)
 
-(defvar guts-common--editor-file (make-temp-file "guts" nil ".json")
-  "The file where JSON editing takes place.")
-
-(define-minor-mode guts-edit-mode
-  "Minor mode for editing components and resources in guts.")
+(defun guts--brp-check (response)
+  "Signal a `user-error' if RESPONSE contains a BRP error.
+Otherwise return the result field of RESPONSE."
+  (if-let ((err (alist-get 'error response)))
+      (user-error "BRP error: %s" (alist-get 'message err))
+    (alist-get 'result response)))
 
 (provide 'guts-common)
 ;;; guts-common.el ends here
